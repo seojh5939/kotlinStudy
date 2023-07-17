@@ -1,4 +1,4 @@
-package LV03
+package LV04
 
 class Calculator {
     var first : Double = 0.0
@@ -24,6 +24,8 @@ class Calculator {
             "multi" -> MultiplyOperation().print(first, second)
             // 나눗셈
             "divide" -> DivideOperation().print(first, second)
+            // 나머지
+            "mod" -> Moduler(first, second)
             else -> println("해당 연산자는 제공하지 않습니다. 덧셈, 뺄셈, 곱셈, 나눗셈, 나머지 연산중 하나를 고르세요.")
         }
     }
@@ -94,7 +96,12 @@ class Calculator {
             "4" -> {
                 selectCalculate("divide")
             }
+            "5" -> {
+                selectCalculate("mod")
+            }
             else -> println("올바른 입력값이 아닙니다. 다시 입력해주세요.")
         }
     }
+
+    fun Moduler(num1: Double, num2: Double): Any = println("나머지연산 결과: ${num1 % num2}")
 }

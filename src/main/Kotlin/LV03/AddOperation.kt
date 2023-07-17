@@ -1,7 +1,7 @@
 package LV03
 
-class AddOperation : Operator {
-    override fun operation(num1: Int, num2: Int): Int = num1+num2
+class AddOperation {
+    fun operation(num1: Double, num2: Double): Double = (num1+num2).toDouble()
 
-    override fun print(num1: Int, num2: Int): Any =  println("덧셈결과: ${operation(num1, num2)}")
+    fun print(num1: Double, num2: Double): Any =  println("덧셈결과: ${operation(num1, num2)}")
 }

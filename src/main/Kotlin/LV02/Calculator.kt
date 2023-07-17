@@ -1,32 +1,42 @@
-package LV03
+package LV02
+
+import LV04.AddOperation
+import LV04.DivideOperation
+import LV04.MultiplyOperation
+import LV04.SubstractOperation
 
 class Calculator {
-    var first : Double = 0.0
-    var second : Double = 0.0
-    var select : String = ""
+    var first: Double = 0.0
+    var second: Double = 0.0
+    var select:String? = ""
 
     fun run() {
         while(true) {
             first = checkInputValid("first").toString().toDouble()
             second = checkInputValid("second").toString().toDouble()
             select = checkInputValid("select").toString()
-            checkSelectOperator(select)
+            when(select) {
+                // 덧셈
+                "1" -> println("덧셈 결과: ${add(first, second)}")
+                // 뺄셈
+                "2" -> println("뺄셈 결과: ${sub(first, second)}")
+                // 곱셈
+                "3" -> println("곱셈 결과: ${mul(first, second)}")
+                // 나눗셈
+                "4" -> println("나눗셈 결과: ${div(first, second)}")
+                // 나머지
+                "5" -> println("나머지 결과: ${mod(first, second)}")
+                else -> println("해당 연산자는 제공하지 않습니다. 덧셈, 뺄셈, 곱셈, 나눗셈, 나머지 연산중 하나를 고르세요.")
+            }
         }
     }
 
-    fun selectCalculate(type: String): Any {
-        return when(type) {
-            // 덧셈
-            "add" -> AddOperation().print(first, second)
-            // 뺄셈
-            "sub" -> SubstractOperation().print(first, second)
-            // 곱셈
-            "multi" -> MultiplyOperation().print(first, second)
-            // 나눗셈
-            "divide" -> DivideOperation().print(first, second)
-            else -> println("해당 연산자는 제공하지 않습니다. 덧셈, 뺄셈, 곱셈, 나눗셈, 나머지 연산중 하나를 고르세요.")
-        }
-    }
+    fun add(num1: Double, num2: Double) = num1 + num2
+    fun sub(num1: Double, num2: Double) = num1 - num2
+    fun mul(num1: Double, num2: Double) = num1 * num2
+    fun div(num1: Double, num2: Double) = num1 / num2
+
+    fun mod(num1: Double, num2: Double) = num1 % num2
 
     fun checkInputValid(types: String): Any {
         return when(types) {
@@ -56,7 +66,7 @@ class Calculator {
             }
             "select" -> {
                 println("어떤 연산을 하시겠습니까?")
-                println("[0] 처음으로 돌아가기 [1] 덧셈 [2] 뺄셈 [3] 곱셈 [4] 나눗셈 [5] 나머지")
+                println("[1] 덧셈 [2] 뺄셈 [3] 곱셈 [4] 나눗셈 [5] 나머지")
                 while(true) {
                     try {
                         var select:String? = readLine()
@@ -76,25 +86,6 @@ class Calculator {
             else -> {
                 return "Error"
             }
-        }
-    }
-
-    fun checkSelectOperator(select: String) : Any {
-        return when(select) {
-            "0" -> run()
-            "1" -> {
-                selectCalculate("add")
-            }
-            "2" -> {
-                selectCalculate("sub")
-            }
-            "3" -> {
-                selectCalculate("multi")
-            }
-            "4" -> {
-                selectCalculate("divide")
-            }
-            else -> println("올바른 입력값이 아닙니다. 다시 입력해주세요.")
         }
     }
 }
